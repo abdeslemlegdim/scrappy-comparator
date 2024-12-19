@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - Comparateur de Prix</title>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fafc;
+            color: #333;
+        }
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(to right, #004aad, #007bff);
+            color: #fff;
+        }
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        .hero a {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #004aad;
+            background-color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .hero a:hover {
+            background-color: #e0e0e0;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #004aad;
+            color: #fff;
+            margin-top: 20px;
+        }
+        footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Bienvenue sur le Comparateur de Prix</h1>
+        <p>Trouvez les meilleures offres pour vos produits préférés sur différents sites.</p>
+        <a href="{% url 'compare_prices' %}">Commencer la recherche</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Comparateur de Prix. Tous droits réservés. Développé avec ❤️ par <a href="#">amine mahjoub et abdesllem gueddim </a>.</p>
+    </footer>
+</body>
+</html>

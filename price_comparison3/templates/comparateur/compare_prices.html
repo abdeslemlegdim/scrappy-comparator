@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparer les prix des produits</title>
+    <style>
+        /* Style général */
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fafc;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 2.5em;
+            color: #004aad;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        form input[type="text"] {
+            width: 50%;
+            padding: 10px;
+            font-size: 1em;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+        }
+
+        form button {
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #004aad;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #003080;
+        }
+
+        /* Table styles */
+        table {
+            width: 90%;
+            margin: 30px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #004aad;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .cheapest {
+            text-align: center;
+            margin: 20px;
+            font-size: 1.2em;
+            color: #007b00;
+            font-weight: bold;
+        }
+
+        .message {
+            text-align: center;
+            margin: 20px;
+            color: #555;
+            font-size: 1.1em;
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            padding: 10px;
+            background-color: #004aad;
+            color: #fff;
+        }
+
+        footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Comparer les prix des produits</h1>
+
+    <!-- Formulaire de recherche -->
+    <form method="get">
+        {{ form.as_p }}
+        <button type="submit">Rechercher</button>
+    </form>
+
+    <!-- Affichage des résultats -->
+    {% if results %}
+        <h2 style="text-align:center;">Résultats pour "{{ request.GET.product_name }}"</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom du produit</th>
+                    <th>Prix (TND)</th>
+                    <th>Site</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in results %}
+                    <tr>
+                        <td>{{ product.title }}</td>
+                        <td>{{ product.price }}</td>
+                        <td>{{ product.site }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <!-- Affichage du prix le moins cher -->
+        <div class="cheapest">
+            <p>Ce produit est moins cher sur : <strong>{{ cheapest_site }}</strong> au prix de <strong>{{ cheapest_price }} TND</strong>.</p>
+        </div>
+    {% else %}
+        <div class="message">
+            {% if request.GET.product_name %}
+                <p>Aucun produit trouvé pour "{{ request.GET.product_name }}".</p>
+            {% else %}
+                <p>Entrez un nom de produit pour commencer la recherche.</p>
+            {% endif %}
+        </div>
+    {% endif %}
+
+    <footer>
+        <p>&copy; 2024 Comparateur de Prix. Tous droits réservés. Développé avec ❤️ par <a href="#">amine mahjoub et abdesllem geuddim</a>.</p>
+    </footer>
+</body>
+</html>
